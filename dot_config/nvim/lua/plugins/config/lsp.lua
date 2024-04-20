@@ -177,6 +177,7 @@ lspconfig.eslint.setup({
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
+
 local vue_language_server_path = "~/.local/share/nvim/mason/bin/vue-language-server"
 lspconfig.tsserver.setup({
 	init_options = {
