@@ -1,0 +1,30 @@
+{
+  "Snippet Snippet": {
+    "prefix": ["snip"],
+    "body": [
+      "\"${1:snippet_name}\": {",
+      "\t\"prefix\": [\"${2:trigger_prefix}\"],",
+      "\t\"body\": [",
+      "\t\t\"$0\"",
+      "\t],",
+      "\t\"description\": \"${3:description}\"",
+      "}"
+    ],
+    "description": "A snippet to create snippets"
+  },
+  "HTML Css attribute": {
+    "prefix": ["c"],
+    "body": ["class=\"$1\"$0"],
+    "description": "css attribute"
+  },
+  "HTML style attribute": {
+    "prefix": ["s"],
+    "body": ["style=\"$1\"$0"],
+    "description": "style attribute"
+  },
+  "Blade Directive": {
+    "prefix": ["@"],
+    "body": ["@${1:section}", "\t$0", "@end$1"],
+    "description": "Generate a balde directive"
+  }
+}

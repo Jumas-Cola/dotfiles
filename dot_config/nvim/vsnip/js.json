@@ -1,0 +1,12 @@
+{
+  "=>": {
+    "prefix": ["=>"],
+    "body": ["($1) => {$2}"],
+    "description": "Arrow function"
+  },
+  "cl": {
+    "prefix": ["cl"],
+    "body": ["console.log($1)"],
+    "description": "Console log"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "=>": {
+    "prefix": ["=>"],
+    "body": ["($1) => {$2}"],
+    "description": "Arrow function"
+  },
+  "template": {
+    "prefix": ["template"],
+    "body": [
+      "<template>",
+      "\t$1",
+      "</template>",
+      "",
+      "<script setup>",
+      "import { reactive } from 'vue';",
+      "",
+      "const props = defineProps({",
+      "\t$2",
+      "});",
+      "",
+      "const state = reactive({",
+      "\t$3",
+      "});",
+      "</script>"
+    ],
+    "description": "Template"
+  },
+  "watch": {
+    "prefix": ["watch"],
+    "body": ["watch(", "\t() => $1,", "\t() => {", "\t\t$2", "\t}", ");"],
+    "description": "Watcher"
+  },
+  "initial": {
+    "prefix": ["initial"],
+    "body": ["const initialState = {", "\t$1: $2,", "};"],
+    "description": "Initial state"
+  }
+}
