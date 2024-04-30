@@ -25,6 +25,7 @@ require("mason-lspconfig").setup({
 		"volar",
 		"yamlls",
 		"golangci_lint_ls",
+		"pylsp",
 	},
 	automatic_installation = true,
 })

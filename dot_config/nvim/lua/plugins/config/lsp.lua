@@ -110,6 +110,24 @@ lspconfig.pyright.setup({
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
+lspconfig.pylsp.setup({
+	filetypes = { "python" },
+	root_dir = lspconfig.util.root_pattern(
+		"pyproject.toml",
+		"setup.py",
+		"main.py",
+		"setup.cfg",
+		"requirements.txt",
+		"Pipfile",
+		"pyrightconfig.json"
+	),
+	before_init = function(_, config)
+		config.settings.python.pythonPath = get_python_path(config.root_dir)
+	end,
+	on_attach = on_attach,
+	flags = lsp_flags,
+	capabilities = capabilities,
+})
 
 -- PHP
 -- lspconfig.intelephense.setup({
