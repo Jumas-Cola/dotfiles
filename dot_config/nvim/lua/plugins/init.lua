@@ -72,7 +72,6 @@ require("lazy").setup({
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",
 	"sbdchd/neoformat", -- Форматирование
-	"hrsh7th/nvim-insx", -- Автозакрытие парных элементов
 	-- Навигация по файлу в отдельном меню
 	{
 		"hedyhli/outline.nvim",
@@ -182,6 +181,7 @@ require("lazy").setup({
 	},
 	{ "echasnovski/mini.clue", version = "*" }, -- Подсказки комбинаций клавиш
 	{ "echasnovski/mini.surround", version = "*" }, -- Оборачивание элементов символами
+	{ "echasnovski/mini.pairs", version = "*" }, -- Автозакрытие парных элементов
 	{ -- Преобразование регистра
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
