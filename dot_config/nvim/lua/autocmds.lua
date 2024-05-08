@@ -51,3 +51,14 @@ autocmd({ "CursorHold", "CursorHoldI" }, {
 		vim.diagnostic.open_float(nil, { focus = false })
 	end,
 })
+
+autocmd("FileType", {
+	pattern = { "text" },
+	callback = function()
+		require("cmp").setup.buffer({
+			completion = {
+				autocomplete = false,
+			},
+		})
+	end,
+})
