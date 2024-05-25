@@ -43,7 +43,7 @@ opt.shell = "fish"
 opt.termguicolors = true
 
 -- Кодировка терминала
-opt.termencoding = "utf-8"
+opt.encoding = "utf-8"
 
 -- Включить поддержку мыши
 opt.mouse = "a"
