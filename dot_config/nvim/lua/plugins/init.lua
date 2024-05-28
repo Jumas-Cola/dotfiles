@@ -132,12 +132,6 @@ require("lazy").setup({
 			end
 		end,
 	},
-	{ -- Комментарии через gc
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
 	{ "nvim-lualine/lualine.nvim" }, -- Нижняя информационная панель
 	"jumas-cola/cosco.nvim", -- Ставит ; и ,
 	{ -- Поиск по проекту
