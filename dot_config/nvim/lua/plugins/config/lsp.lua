@@ -214,7 +214,6 @@ lspconfig.tsserver.setup({
 		"typescript",
 		"typescriptreact",
 		"typescript.tsx",
-		"vue",
 	},
 	on_attach = on_attach,
 	flags = lsp_flags,
