@@ -89,7 +89,7 @@ local function get_python_path(workspace)
 	end
 
 	-- Fallback to system Python.
-	return exepath("python3") or exepath("python") or "python"
+	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
 end
 
 lspconfig.pyright.setup({
@@ -121,9 +121,6 @@ lspconfig.pylsp.setup({
 		"Pipfile",
 		"pyrightconfig.json"
 	),
-	before_init = function(_, config)
-		config.settings.python.pythonPath = get_python_path(config.root_dir)
-	end,
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
