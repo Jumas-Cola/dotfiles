@@ -75,6 +75,12 @@ local lsp_flags = {
 
 --Python
 local function get_python_path(workspace)
+	-- If exists poetry env
+	local env = vim.trim(vim.fn.system('cd "' .. workspace .. '"; poetry env info -p 2>/dev/null'))
+	if string.len(env) > 0 then
+		return path.join(env, "bin", "python")
+	end
+
 	-- Use activated virtualenv.
 	if vim.env.VIRTUAL_ENV then
 		return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
