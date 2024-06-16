@@ -18,7 +18,7 @@ require("lazy").setup({
 		opts = {
 			ensure_installed = {
 				"stylua",
-				"autopep8",
+				"black",
 				"blade-formatter",
 				"css-lsp cssls",
 				"emmet-ls emmet_ls",
