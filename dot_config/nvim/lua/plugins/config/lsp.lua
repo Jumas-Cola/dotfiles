@@ -142,6 +142,7 @@ lspconfig.phpactor.setup({
 })
 lspconfig.psalm.setup({
 	filetypes = { "php" },
+	root_dir = lspconfig.util.root_pattern("psalm.xml", "psalm.xml.dist"),
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
