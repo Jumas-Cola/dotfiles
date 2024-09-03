@@ -24,6 +24,10 @@ map("n", "<A-c>", ":tabc<CR>", { table.unpack(opts), desc = "Close buffer" })
 map("n", "<A-[>", ":vertical resize +1<CR>", { table.unpack(opts), desc = "Move splitline +1" })
 map("n", "<A-]>", ":vertical resize -1<CR>", { table.unpack(opts), desc = "Move splitline -1" })
 
+-- Изменение размера horizontal split
+map("n", "<C-[>", ":horizontal resize +1<CR>", { table.unpack(opts), desc = "Move splitline +1" })
+map("n", "<C-]>", ":horizontal resize -1<CR>", { table.unpack(opts), desc = "Move splitline -1" })
+
 map("n", "<A-d>", ":tab split<CR>", { table.unpack(opts), desc = "Duplicate tab" })
 
 map("n", "<A-t>", ":below split | resize -11 | terminal<CR>", { table.unpack(opts), desc = "Open terminal" })
