@@ -20,7 +20,7 @@ require("mason-lspconfig").setup({
 		"psalm",
 		"pyright",
 		"sqlls",
-		"tsserver",
+		"ts_ls",
 		"eslint",
 		"volar",
 		"yamlls",

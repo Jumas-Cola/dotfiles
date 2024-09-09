@@ -40,7 +40,7 @@ require("lazy").setup({
 				"sqlfluff",
 				"sqlls",
 				"stylua",
-				"typescript-language-server tsserver",
+				"ts_ls",
 				"vue-language-server volar",
 				"yaml-language-server yamlls",
 				"golangci-lint",
