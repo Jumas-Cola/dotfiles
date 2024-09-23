@@ -34,7 +34,7 @@ require("lazy").setup({
 				"phpcs",
 				"prettierd",
 				"psalm",
-				"pyright",
+				"basedpyright",
 				"shfmt",
 				"sql-formatter",
 				"sqlfluff",

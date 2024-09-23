@@ -98,7 +98,7 @@ local function get_python_path(workspace)
 	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
 end
 
-lspconfig.pyright.setup({
+lspconfig.basedpyright.setup({
 	filetypes = { "python" },
 	root_dir = lspconfig.util.root_pattern(
 		"pyproject.toml",
