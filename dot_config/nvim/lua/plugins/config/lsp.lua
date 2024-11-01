@@ -153,7 +153,7 @@ lspconfig.phpactor.setup({
 		["language_server_phpstan.enabled"] = false,
 		["language_server_psalm.enabled"] = true,
 		["language_server_worse_reflection.inlay_hints.enable"] = true,
-		["language_server_worse_reflection.inlay_hints.types"] = true,
+		["language_server_worse_reflection.inlay_hints.types"] = false,
 		["language_server_worse_reflection.inlay_hints.params"] = true,
 	},
 })
