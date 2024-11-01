@@ -51,7 +51,7 @@ require("lazy").setup({
 	},
 	{ "williamboman/mason-lspconfig.nvim", opts = nil },
 	"nvim-treesitter/nvim-treesitter", -- Парсер для доп подсветки
-	"neovim/nvim-lspconfig", -- Автодополнялки
+  "neovim/nvim-lspconfig", -- Автодополнялки
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
@@ -208,10 +208,10 @@ require("lazy").setup({
 		},
 	},
 	"kkoomen/vim-doge", -- Auto docblocks
-  {
-    "supermaven-inc/supermaven-nvim",
-    config = function()
-      require("supermaven-nvim").setup({})
-    end,
-  }
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({})
+		end,
+	},
 })

@@ -64,6 +64,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<space>f", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
+	vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
 end
 
 autocmd("LspAttach", { desc = "Setup highlight symbol", callback = highlight_symbol })
@@ -115,6 +116,15 @@ lspconfig.basedpyright.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
+	settings = {
+		basedpyright = {
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "openFilesOnly",
+				useLibraryCodeForTypes = true,
+			},
+		},
+	},
 })
 lspconfig.pylsp.setup({
 	filetypes = { "python" },
@@ -139,6 +149,13 @@ lspconfig.phpactor.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
+	init_options = {
+		["language_server_phpstan.enabled"] = false,
+		["language_server_psalm.enabled"] = true,
+		["language_server_worse_reflection.inlay_hints.enable"] = true,
+		["language_server_worse_reflection.inlay_hints.types"] = true,
+		["language_server_worse_reflection.inlay_hints.params"] = true,
+	},
 })
 lspconfig.psalm.setup({
 	filetypes = { "php" },
@@ -146,6 +163,15 @@ lspconfig.psalm.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
+	settings = {
+		phpactor = {
+			inlayHints = {
+				enable = true,
+				parameterHints = true,
+				typeHints = true,
+			},
+		},
+	},
 })
 
 -- HTML
@@ -222,6 +248,32 @@ lspconfig.ts_ls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	},
 })
 lspconfig.volar.setup({
 	filetypes = {
@@ -267,6 +319,19 @@ lspconfig.gopls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
+	settings = {
+		gopls = {
+			hints = {
+				rangeVariableTypes = true,
+				parameterNames = true,
+				constantValues = true,
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				functionTypeParameters = true,
+			},
+		},
+	},
 })
 lspconfig.golangci_lint_ls.setup({
 	filetypes = { "go", "gomod" },
@@ -293,6 +358,9 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
+			hint = {
+				enable = true,
+			},
 			diagnostics = {
 				globals = {
 					"vim",
