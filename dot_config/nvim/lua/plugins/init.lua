@@ -61,13 +61,13 @@ require("lazy").setup({
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
 	"hrsh7th/vim-vsnip-integ",
-	-- {
-	-- 	"Exafunction/codeium.nvim",
-	-- 	dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
-	-- 	config = function()
-	-- 		require("codeium").setup({})
-	-- 	end,
-	-- },
+	{
+		"Exafunction/codeium.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",
@@ -208,10 +208,10 @@ require("lazy").setup({
 		},
 	},
 	"kkoomen/vim-doge", -- Auto docblocks
-	{
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({})
-		end,
-	},
+	-- {
+	-- 	"supermaven-inc/supermaven-nvim",
+	-- 	config = function()
+	-- 		require("supermaven-nvim").setup({})
+	-- 	end,
+	-- },
 })
