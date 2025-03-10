@@ -68,6 +68,12 @@ require("lazy").setup({
 			require("codeium").setup({})
 		end,
 	},
+	-- {
+	-- 	"supermaven-inc/supermaven-nvim",
+	-- 	config = function()
+	-- 		require("supermaven-nvim").setup({})
+	-- 	end,
+	-- },
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",
@@ -208,10 +214,4 @@ require("lazy").setup({
 		},
 	},
 	"kkoomen/vim-doge", -- Auto docblocks
-	-- {
-	-- 	"supermaven-inc/supermaven-nvim",
-	-- 	config = function()
-	-- 		require("supermaven-nvim").setup({})
-	-- 	end,
-	-- },
 })

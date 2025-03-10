@@ -160,6 +160,8 @@ require("neo-tree").setup({
 			hide_by_pattern = { -- uses glob style patterns
 				-- "*.meta",
 				-- "*/src/*/tsconfig.json",
+        "__init__.py",
+        "__pycache__"
 			},
 			always_show = { -- remains visible even if other settings would normally hide it
 				-- ".gitignored",

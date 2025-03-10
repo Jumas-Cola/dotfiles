@@ -100,27 +100,17 @@ local function get_python_path(workspace)
 end
 
 lspconfig.basedpyright.setup({
-	filetypes = { "python" },
-	root_dir = lspconfig.util.root_pattern(
-		"pyproject.toml",
-		"setup.py",
-		"main.py",
-		"setup.cfg",
-		"requirements.txt",
-		"Pipfile",
-		"pyrightconfig.json"
-	),
-	before_init = function(_, config)
-		config.settings.python.pythonPath = get_python_path(config.root_dir)
-	end,
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
+	handlers = {
+		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
+		["textDocument/publishDiagnostics"] = function() end,
+	},
 	settings = {
 		basedpyright = {
+			disableOrganizeImports = true,
 			analysis = {
 				autoSearchPaths = true,
 				diagnosticMode = "openFilesOnly",
+				typeCheckingMode = "off",
 				useLibraryCodeForTypes = true,
 			},
 		},
