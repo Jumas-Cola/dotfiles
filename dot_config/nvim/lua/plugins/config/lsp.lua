@@ -100,6 +100,9 @@ local function get_python_path(workspace)
 end
 
 lspconfig.basedpyright.setup({
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
 	handlers = {
 		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
 		["textDocument/publishDiagnostics"] = function() end,
