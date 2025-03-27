@@ -51,7 +51,7 @@ require("lazy").setup({
 	},
 	{ "williamboman/mason-lspconfig.nvim", opts = nil },
 	"nvim-treesitter/nvim-treesitter", -- Парсер для доп подсветки
-  "neovim/nvim-lspconfig", -- Автодополнялки
+	"neovim/nvim-lspconfig", -- Автодополнялки
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
@@ -68,6 +68,24 @@ require("lazy").setup({
 			require("codeium").setup({})
 		end,
 	},
+	-- {
+	-- 	"milanglacier/minuet-ai.nvim",
+	-- 	config = function()
+	-- 		require("minuet").setup({
+	-- 			provider = "openai_fim_compatible",
+	-- 			provider_options = {
+	-- 				openai_fim_compatible = {
+	-- 					api_key = "DEEPSEEK_API_KEY",
+	-- 					name = "deepseek",
+	-- 					optional = {
+	-- 						max_tokens = 256,
+	-- 						top_p = 0.9,
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	-- {
 	-- 	"supermaven-inc/supermaven-nvim",
 	-- 	config = function()
