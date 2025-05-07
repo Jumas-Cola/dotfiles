@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Neotree
@@ -41,3 +42,6 @@ map("n", "db", ":DapToggleBreakpoint<CR>", { table.unpack(opts), desc = "DAP bre
 
 -- Generate comment for current line
 map("n", "<Leader>d", "<Plug>(doge-generate)", { table.unpack(opts), desc = "Generate comment for current line" })
+
+-- Gen
+keymap({ "n", "v" }, "<leader>]", ":Gen<CR>", { table.unpack(opts), desc = "Generate with AI" })

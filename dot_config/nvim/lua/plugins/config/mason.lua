@@ -18,7 +18,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"phpactor",
 		"psalm",
-		"basedpyright",
+		"ruff",
 		"sqlls",
 		"ts_ls",
 		"eslint",

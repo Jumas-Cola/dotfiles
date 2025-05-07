@@ -18,7 +18,7 @@ require("lazy").setup({
 		opts = {
 			ensure_installed = {
 				"stylua",
-				"black",
+				"flake8",
 				"blade-formatter",
 				"css-lsp cssls",
 				"emmet-ls emmet_ls",
@@ -34,7 +34,7 @@ require("lazy").setup({
 				"phpcs",
 				"prettierd",
 				"psalm",
-				"basedpyright",
+				"ruff",
 				"shfmt",
 				"sql-formatter",
 				"sqlfluff",
@@ -68,30 +68,7 @@ require("lazy").setup({
 			require("codeium").setup({})
 		end,
 	},
-	-- {
-	-- 	"milanglacier/minuet-ai.nvim",
-	-- 	config = function()
-	-- 		require("minuet").setup({
-	-- 			provider = "openai_fim_compatible",
-	-- 			provider_options = {
-	-- 				openai_fim_compatible = {
-	-- 					api_key = "DEEPSEEK_API_KEY",
-	-- 					name = "deepseek",
-	-- 					optional = {
-	-- 						max_tokens = 256,
-	-- 						top_p = 0.9,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"supermaven-inc/supermaven-nvim",
-	-- 	config = function()
-	-- 		require("supermaven-nvim").setup({})
-	-- 	end,
-	-- },
+  "David-Kunz/gen.nvim",
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",
@@ -162,23 +139,6 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
 		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{ -- Поддержка множества курсоров
-		"smoka7/multicursors.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"smoka7/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n" },
-				"<C-n>",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
-		},
 	},
 	"lewis6991/gitsigns.nvim", -- Интеграция с git
 	"norcalli/nvim-colorizer.lua", -- Отображение цветов по кодам

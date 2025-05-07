@@ -99,26 +99,40 @@ local function get_python_path(workspace)
 	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
 end
 
-lspconfig.basedpyright.setup({
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-	handlers = {
-		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
-		["textDocument/publishDiagnostics"] = function() end,
-	},
+lspconfig.ruff.setup({
 	settings = {
-		basedpyright = {
-			disableOrganizeImports = true,
-			analysis = {
-				autoSearchPaths = true,
-				diagnosticMode = "openFilesOnly",
-				typeCheckingMode = "off",
-				useLibraryCodeForTypes = true,
-			},
+		args = {
+			"--select=QUO",
+			"--fix",
+			"--quote-style=single",
 		},
 	},
+	flags = lsp_flags,
+	capabilities = capabilities,
 })
+
+lspconfig.dockerls.setup({})
+
+-- lspconfig.basedpyright.setup({
+-- 	root_dir = function()
+-- 		return vim.loop.cwd()
+-- 	end,
+-- 	handlers = {
+-- 		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
+-- 		["textDocument/publishDiagnostics"] = function() end,
+-- 	},
+-- 	settings = {
+-- 		basedpyright = {
+-- 			disableOrganizeImports = true,
+-- 			analysis = {
+-- 				autoSearchPaths = true,
+-- 				diagnosticMode = "openFilesOnly",
+-- 				typeCheckingMode = "off",
+-- 				useLibraryCodeForTypes = true,
+-- 			},
+-- 		},
+-- 	},
+-- })
 lspconfig.pylsp.setup({
 	filetypes = { "python" },
 	root_dir = lspconfig.util.root_pattern(
