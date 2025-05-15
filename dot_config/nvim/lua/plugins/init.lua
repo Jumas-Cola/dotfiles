@@ -51,6 +51,11 @@ require("lazy").setup({
 	},
 	{ "williamboman/mason-lspconfig.nvim", opts = nil },
 	"nvim-treesitter/nvim-treesitter", -- Парсер для доп подсветки
+	"nvim-treesitter/nvim-treesitter-textobjects",
+	{
+		"dariuscorvus/tree-sitter-language-injection.nvim",
+		opts = {},
+	},
 	"neovim/nvim-lspconfig", -- Автодополнялки
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
@@ -68,7 +73,7 @@ require("lazy").setup({
 			require("codeium").setup({})
 		end,
 	},
-  "David-Kunz/gen.nvim",
+	"David-Kunz/gen.nvim",
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",

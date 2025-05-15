@@ -36,6 +36,7 @@ require("nvim-treesitter.configs").setup({
 		"typescript",
 		"yaml",
 		"blade",
+		"sql",
 	},
 	highlight = {
 		enable = true,
