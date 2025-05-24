@@ -99,17 +99,17 @@ local function get_python_path(workspace)
 	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
 end
 
-lspconfig.ruff.setup({
-	settings = {
-		args = {
-			"--select=QUO",
-			"--fix",
-			"--quote-style=single",
-		},
-	},
-	flags = lsp_flags,
-	capabilities = capabilities,
-})
+-- lspconfig.ruff.setup({
+-- 	settings = {
+-- 		args = {
+-- 			"--select=QUO",
+-- 			"--fix",
+-- 			"--quote-style=single",
+-- 		},
+-- 	},
+-- 	flags = lsp_flags,
+-- 	capabilities = capabilities,
+-- })
 
 lspconfig.dockerls.setup({})
 
@@ -233,17 +233,7 @@ lspconfig.eslint.setup({
 	capabilities = capabilities,
 })
 
-local vue_language_server_path = "~/.local/share/nvim/mason/bin/vue-language-server"
 lspconfig.ts_ls.setup({
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = vue_language_server_path,
-				languages = { "vue" },
-			},
-		},
-	},
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -281,19 +271,6 @@ lspconfig.ts_ls.setup({
 			},
 		},
 	},
-})
-lspconfig.volar.setup({
-	filetypes = {
-		"typescript",
-		"javascript",
-		"javascriptreact",
-		"typescriptreact",
-		"vue",
-		"json",
-	},
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
 })
 
 -- JSON
