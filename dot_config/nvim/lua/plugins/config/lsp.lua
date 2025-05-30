@@ -113,26 +113,26 @@ end
 
 lspconfig.dockerls.setup({})
 
--- lspconfig.basedpyright.setup({
--- 	root_dir = function()
--- 		return vim.loop.cwd()
--- 	end,
--- 	handlers = {
--- 		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
--- 		["textDocument/publishDiagnostics"] = function() end,
--- 	},
--- 	settings = {
--- 		basedpyright = {
--- 			disableOrganizeImports = true,
--- 			analysis = {
--- 				autoSearchPaths = true,
--- 				diagnosticMode = "openFilesOnly",
--- 				typeCheckingMode = "off",
--- 				useLibraryCodeForTypes = true,
--- 			},
--- 		},
--- 	},
--- })
+lspconfig.basedpyright.setup({
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
+	handlers = {
+		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
+		["textDocument/publishDiagnostics"] = function() end,
+	},
+	settings = {
+		basedpyright = {
+			disableOrganizeImports = true,
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "openFilesOnly",
+				typeCheckingMode = "off",
+				useLibraryCodeForTypes = true,
+			},
+		},
+	},
+})
 lspconfig.pylsp.setup({
 	filetypes = { "python" },
 	root_dir = lspconfig.util.root_pattern(

@@ -47,6 +47,7 @@ require("lazy").setup({
 				"golangci-lint",
 				"golangci_lint_ls",
 				"pylsp",
+        "basedpyright"
 			},
 		},
 	},
