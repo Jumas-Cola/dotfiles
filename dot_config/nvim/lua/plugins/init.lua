@@ -46,8 +46,7 @@ require("lazy").setup({
 				"yaml-language-server yamlls",
 				"golangci-lint",
 				"golangci_lint_ls",
-				"pylsp",
-        "basedpyright"
+				"basedpyright"
 			},
 		},
 	},

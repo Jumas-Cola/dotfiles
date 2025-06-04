@@ -23,8 +23,7 @@ require("mason-lspconfig").setup({
 		"eslint",
 		"yamlls",
 		"golangci_lint_ls",
-		"pylsp",
-    "basedpyright"
+		"basedpyright"
 	},
 	automatic_installation = true,
 })
