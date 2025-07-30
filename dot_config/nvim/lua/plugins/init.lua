@@ -46,8 +46,8 @@ require("lazy").setup({
 				"yaml-language-server yamlls",
 				"golangci-lint",
 				"golangci_lint_ls",
-				"basedpyright",
-				"pylsp"
+				-- "basedpyright",
+				"pylsp",
 			},
 		},
 	},
@@ -73,6 +73,12 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
 		config = function()
 			require("codeium").setup({})
+		end,
+	},
+	{
+		"jonroosevelt/gemini-cli.nvim",
+		config = function()
+			require("gemini").setup()
 		end,
 	},
 	"David-Kunz/gen.nvim",
@@ -148,6 +154,26 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	"lewis6991/gitsigns.nvim", -- Интеграция с git
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = true,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
 	"norcalli/nvim-colorizer.lua", -- Отображение цветов по кодам
 	"onsails/lspkind.nvim", -- Иконки для автодополнения
 	"rcarriga/nvim-notify", -- Notifications
