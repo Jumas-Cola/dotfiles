@@ -75,62 +75,6 @@ local lsp_flags = {
 }
 
 --Python
-local function get_python_path(workspace)
-	-- If exists poetry env
-	local env = vim.trim(vim.fn.system('cd "' .. workspace .. '"; poetry env info -p 2>/dev/null'))
-	if string.len(env) > 0 then
-		return path.join(env, "bin", "python")
-	end
-
-	-- Use activated virtualenv.
-	if vim.env.VIRTUAL_ENV then
-		return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-	end
-
-	-- Find and use virtualenv in workspace directory.
-	for _, pattern in ipairs({ "*", ".*" }) do
-		local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
-		if match ~= "" then
-			return path.join(path.dirname(match), "bin", "python")
-		end
-	end
-
-	-- Fallback to system Python.
-	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
-end
-
--- lspconfig.ruff.setup({
--- 	settings = {
--- 		args = {
--- 			"--select=QUO",
--- 			"--fix",
--- 			"--quote-style=single",
--- 		},
--- 	},
--- 	flags = lsp_flags,
--- 	capabilities = capabilities,
--- })
-
--- lspconfig.basedpyright.setup({
--- 	root_dir = function()
--- 		return vim.loop.cwd()
--- 	end,
--- 	handlers = {
--- 		-- Don't publish basedpyright diagnostics (we use ruff and mypy instead)
--- 		["textDocument/publishDiagnostics"] = function() end,
--- 	},
--- 	settings = {
--- 		basedpyright = {
--- 			disableOrganizeImports = true,
--- 			analysis = {
--- 				autoSearchPaths = true,
--- 				diagnosticMode = "openFilesOnly",
--- 				typeCheckingMode = "off",
--- 				useLibraryCodeForTypes = true,
--- 			},
--- 		},
--- 	},
--- })
 lspconfig.pylsp.setup({
 	filetypes = { "python" },
 	root_dir = lspconfig.util.root_pattern(
@@ -148,7 +92,6 @@ lspconfig.pylsp.setup({
 })
 
 -- PHP
--- lspconfig.intelephense.setup({
 lspconfig.phpactor.setup({
 	filetypes = { "php" },
 	on_attach = on_attach,

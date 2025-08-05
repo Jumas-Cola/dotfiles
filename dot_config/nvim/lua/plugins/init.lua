@@ -25,7 +25,6 @@ require("lazy").setup({
 				"eslint-lsp eslint",
 				"gopls",
 				"html-lsp html",
-				"intelephense",
 				"isort",
 				"json-lsp jsonls",
 				"lua-language-server lua_ls",
@@ -34,6 +33,7 @@ require("lazy").setup({
 				"phpcs",
 				"prettierd",
 				"psalm",
+				"pint",
 				"autopep8",
 				"autoflake",
 				"shfmt",
@@ -46,7 +46,6 @@ require("lazy").setup({
 				"yaml-language-server yamlls",
 				"golangci-lint",
 				"golangci_lint_ls",
-				-- "basedpyright",
 				"pylsp",
 			},
 		},
@@ -81,11 +80,10 @@ require("lazy").setup({
 			require("gemini").setup()
 		end,
 	},
-	"David-Kunz/gen.nvim",
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
 	"nvimtools/none-ls.nvim",
-	"sbdchd/neoformat", -- Форматирование
+	"stevearc/conform.nvim", -- Форматирование
 	-- Навигация по файлу в отдельном меню
 	{
 		"hedyhli/outline.nvim",

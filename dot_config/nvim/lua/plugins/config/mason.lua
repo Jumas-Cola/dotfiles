@@ -13,7 +13,6 @@ require("mason-lspconfig").setup({
 		"emmet_ls",
 		"gopls",
 		"html",
-		"intelephense",
 		"jsonls",
 		"lua_ls",
 		"phpactor",
@@ -23,7 +22,6 @@ require("mason-lspconfig").setup({
 		"eslint",
 		"yamlls",
 		"golangci_lint_ls",
-		-- "basedpyright",
 		"pylsp"
 	},
 	automatic_installation = true,
