@@ -7,11 +7,8 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local autocmd = vim.api.nvim_create_autocmd
-local lspconfig = require("lspconfig")
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local util = require("lspconfig/util")
-local path = util.path
 
 -- Подсветка одинаковых переменных
 local function highlight_symbol(event)
@@ -75,24 +72,26 @@ local lsp_flags = {
 }
 
 --Python
-lspconfig.pylsp.setup({
+vim.lsp.enable("pylsp")
+vim.lsp.config("pylsp", {
 	filetypes = { "python" },
-	root_dir = lspconfig.util.root_pattern(
-		"pyproject.toml",
-		"setup.py",
-		"main.py",
-		"setup.cfg",
-		"requirements.txt",
-		"Pipfile",
-		"pyrightconfig.json"
-	),
+	-- root_dir = root_pattern(
+	-- 	"pyproject.toml",
+	-- 	"setup.py",
+	-- 	"main.py",
+	-- 	"setup.cfg",
+	-- 	"requirements.txt",
+	-- 	"Pipfile",
+	-- 	"pyrightconfig.json"
+	-- ),
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
 -- PHP
-lspconfig.phpactor.setup({
+vim.lsp.enable("phpactor")
+vim.lsp.config("phpactor", {
 	filetypes = { "php" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -105,9 +104,10 @@ lspconfig.phpactor.setup({
 		["language_server_worse_reflection.inlay_hints.params"] = true,
 	},
 })
-lspconfig.psalm.setup({
+vim.lsp.enable("psalm")
+vim.lsp.config("psalm", {
 	filetypes = { "php" },
-	root_dir = lspconfig.util.root_pattern("psalm.xml", "psalm.xml.dist"),
+	-- root_dir = root_pattern("psalm.xml", "psalm.xml.dist"),
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
@@ -123,13 +123,15 @@ lspconfig.psalm.setup({
 })
 
 -- HTML
-lspconfig.html.setup({
+vim.lsp.enable("psalm")
+vim.lsp.config("html", {
 	filetypes = { "html", "blade" },
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
-lspconfig.emmet_ls.setup({
+vim.lsp.enable("emmet_ls")
+vim.lsp.config("emmet_ls", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
@@ -159,7 +161,8 @@ lspconfig.emmet_ls.setup({
 })
 
 -- JavaScript
-lspconfig.eslint.setup({
+vim.lsp.enable("eslint")
+vim.lsp.config("eslint", {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -168,13 +171,14 @@ lspconfig.eslint.setup({
 		"vue",
 		"json",
 	},
-	root_dir = lspconfig.util.root_pattern("package.json", "package-lock.json"),
+	-- root_dir = root_pattern("package.json", "package-lock.json"),
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.enable("ts_ls")
+vim.lsp.config("ts_ls", {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -215,7 +219,8 @@ lspconfig.ts_ls.setup({
 })
 
 -- JSON
-lspconfig.jsonls.setup({
+vim.lsp.enable("jsonls")
+vim.lsp.config("jsonls", {
 	filetypes = { "json", "jsonc" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -223,7 +228,8 @@ lspconfig.jsonls.setup({
 })
 
 -- YAML
-lspconfig.yamlls.setup({
+vim.lsp.enable("yamlls")
+vim.lsp.config("yamlls", {
 	filetypes = { "yaml" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -231,7 +237,8 @@ lspconfig.yamlls.setup({
 })
 
 -- SQL
-lspconfig.sqlls.setup({
+vim.lsp.enable("sqlls")
+vim.lsp.config("sqlls", {
 	filetypes = { "sql" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -239,7 +246,8 @@ lspconfig.sqlls.setup({
 })
 
 -- Golang
-lspconfig.gopls.setup({
+vim.lsp.enable("gopls")
+vim.lsp.config("gopls", {
 	filetypes = { "go", "gomod" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -258,25 +266,27 @@ lspconfig.gopls.setup({
 		},
 	},
 })
-lspconfig.golangci_lint_ls.setup({
+vim.lsp.enable("golangci_lint_ls")
+vim.lsp.config("golangci_lint_ls", {
 	filetypes = { "go", "gomod" },
-	root_dir = lspconfig.util.root_pattern(
-		".golangci.yml",
-		".golangci.yaml",
-		".golangci.toml",
-		".golangci.json",
-		"go.work",
-		"go.mod",
-		"main.go",
-		".git"
-	),
+	-- root_dir = root_pattern(
+	-- 	".golangci.yml",
+	-- 	".golangci.yaml",
+	-- 	".golangci.toml",
+	-- 	".golangci.json",
+	-- 	"go.work",
+	-- 	"go.mod",
+	-- 	"main.go",
+	-- 	".git"
+	-- ),
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
 -- Lua
-lspconfig.lua_ls.setup({
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
 	filetypes = { "lua" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -298,7 +308,8 @@ lspconfig.lua_ls.setup({
 })
 
 -- CSS
-lspconfig.cssls.setup({
+vim.lsp.enable("cssls")
+vim.lsp.config("cssls", {
 	filetypes = { "css", "scss", "sass" },
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -306,7 +317,8 @@ lspconfig.cssls.setup({
 })
 
 -- Docker
-lspconfig.dockerls.setup({
+vim.lsp.enable("dockerls")
+vim.lsp.config("dockerls", {
 	settings = {
 		docker = {
 			languageserver = {
