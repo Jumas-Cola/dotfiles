@@ -1,9 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 
 autocmd("FileType", {
-	pattern = { "javascript", "vue", "html", "lua" },
+	pattern = { "javascript", "vue", "html", "lua", "typescript", "typescriptreact", "javascriptreact" },
 	callback = function()
 		vim.bo.shiftwidth = 2
 		vim.bo.tabstop = 2
@@ -32,16 +32,15 @@ autocmd("FileType", {
 	end,
 })
 
--- Auto semicolon
 autocmd("FileType", {
 	pattern = { "php", "css", "javascript" },
 	callback = function()
-		keymap.set(
-			"n",
-			"<Leader>;",
-			"<Cmd>CommaOrSemiColon<CR>",
-			{ noremap = true, silent = true, desc = "Auto comma or semicolon" }
-		)
+		keymap.set("n", "<Leader>;", "<Cmd>CommaOrSemiColon<CR>", {
+			noremap = true,
+			silent = true,
+			buffer = true,
+			desc = "Auto comma or semicolon",
+		})
 	end,
 })
 
@@ -53,7 +52,7 @@ autocmd({ "CursorHold", "CursorHoldI" }, {
 })
 
 autocmd("FileType", {
-	pattern = { "text" },
+	pattern = { "text", "gitcommit", "markdown" },
 	callback = function()
 		require("cmp").setup.buffer({
 			completion = {

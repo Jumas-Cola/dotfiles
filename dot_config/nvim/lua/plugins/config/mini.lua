@@ -1,31 +1,24 @@
 local miniclue = require("mini.clue")
 miniclue.setup({
 	triggers = {
-		-- Leader triggers
 		{ mode = "n", keys = "<Leader>" },
 		{ mode = "x", keys = "<Leader>" },
-
-		-- Built-in completion
-		{ mode = "i", keys = "<C-x>" }, -- `g` key
+		{ mode = "i", keys = "<C-x>" },
 		{ mode = "n", keys = "g" },
-		{ mode = "x", keys = "g" }, -- Marks
+		{ mode = "x", keys = "g" },
 		{ mode = "n", keys = "'" },
 		{ mode = "n", keys = "`" },
 		{ mode = "x", keys = "'" },
-		{ mode = "x", keys = "`" }, -- Registers
+		{ mode = "x", keys = "`" },
 		{ mode = "n", keys = '"' },
 		{ mode = "x", keys = '"' },
 		{ mode = "i", keys = "<C-r>" },
 		{ mode = "c", keys = "<C-r>" },
-
-		-- Window commands
-		{ mode = "n", keys = "<C-w>" }, -- `z` key
+		{ mode = "n", keys = "<C-w>" },
 		{ mode = "n", keys = "z" },
 		{ mode = "x", keys = "z" },
 	},
-
 	clues = {
-		-- Enhance this by adding descriptions for <Leader> mapping groups
 		miniclue.gen_clues.builtin_completion(),
 		miniclue.gen_clues.g(),
 		miniclue.gen_clues.marks(),
@@ -35,5 +28,18 @@ miniclue.setup({
 	},
 })
 
-require("mini.surround").setup()
-require('mini.pairs').setup()
+require("mini.surround").setup({
+	mappings = {
+		add = "sa",
+		delete = "sd",
+		find = "sf",
+		find_left = "sF",
+		highlight = "sh",
+		replace = "sr",
+		update_n_lines = "sn",
+	},
+})
+
+require("mini.pairs").setup({
+	modes = { insert = true, command = true, terminal = false },
+})

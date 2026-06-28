@@ -1,6 +1,7 @@
-local none_ls = require("null-ls")
-none_ls.setup({
+local null_ls = require("null-ls")
+
+null_ls.setup({
 	sources = {
-		none_ls.builtins.diagnostics.hadolint,
+		null_ls.builtins.diagnostics.hadolint,
 	},
 })

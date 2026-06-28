@@ -73,9 +73,6 @@ local function showStartScreen()
 	end
 
 	vim.cmd("normal gg")
-
-	vim.cmd("Neotree toggle")
-
 	vim.bo[0].modifiable = false
 end
 

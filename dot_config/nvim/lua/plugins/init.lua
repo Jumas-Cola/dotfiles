@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -15,49 +15,88 @@ require("lazy").setup({
 	-- Пакетный менеджер
 	{
 		"williamboman/mason.nvim",
+		event = "VeryLazy",
 		opts = {
-			ensure_installed = {
-				"stylua",
-				"flake8",
-				"blade-formatter",
-				"css-lsp cssls",
-				"emmet-ls emmet_ls",
-				"eslint-lsp eslint",
-				"gopls",
-				"html-lsp html",
-				"isort",
-				"json-lsp jsonls",
-				"lua-language-server lua_ls",
-				"php-cs-fixer",
-				"phpactor",
-				"phpcs",
-				"prettierd",
-				"psalm",
-				"pint",
-				"autopep8",
-				"autoflake",
-				"shfmt",
-				"sqlls",
-				"sqlformatter",
-				"sqlfluff",
-				"pgformatter",
-				"stylua",
-				"ts_ls",
-				"yaml-language-server yamlls",
-				"golangci-lint",
-				"golangci_lint_ls",
-				"pylsp",
+ensure_installed = {
+			"stylua",
+			"flake8",
+			"blade-formatter",
+			"css-lsp",
+			"emmet-ls",
+			"eslint-lsp",
+			"gopls",
+			"html-lsp",
+			"isort",
+			"json-lsp",
+			"lua-language-server",
+			"php-cs-fixer",
+			"phpactor",
+			"phpcs",
+			"prettierd",
+			"psalm",
+			"pint",
+			"autopep8",
+			"autoflake",
+			"shfmt",
+			"sql-lsp",
+			"sqlformatter",
+			"sqlfluff",
+			"pgformatter",
+			"ts_ls",
+			"yaml-language-server",
+			"golangci-lint",
+			"golangci_lint_ls",
+			"pylsp",
+			"dockerfile-languageserver",
+			"ruff",
+			"black",
+			"eslint_d",
+			"phpcsfixer",
+			"phpstan",
+			"luacheck",
+			"stylelint",
+			"jsonlint",
+			"markdownlint",
+			"shellcheck",
+			"hadolint",
+			"sqlfmt",
+			"goimports",
+			"rustfmt",
+			"terraform_fmt",
+			"dockerfile-format",
+			"yamllint",
+		},
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+		opts = {
+			ensure_installed = {},
+			handlers = {
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+				["lua_ls"] = function()
+					require("lspconfig").lua_ls.setup({
+						settings = {
+							Lua = {
+								hint = { enable = true },
+								diagnostics = { globals = { "vim" } },
+							},
+						},
+					})
+				end,
 			},
 		},
 	},
-	{ "williamboman/mason-lspconfig.nvim", opts = nil },
+	{ "neovim/nvim-lspconfig", lazy = true },
 	"nvim-treesitter/nvim-treesitter", -- Парсер для доп подсветки
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{
 		"dariuscorvus/tree-sitter-language-injection.nvim",
 		opts = {},
 	},
-	"neovim/nvim-lspconfig", -- Автодополнялки
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
@@ -74,26 +113,29 @@ require("lazy").setup({
 			require("codeium").setup({})
 		end,
 	},
-	{
-		"jonroosevelt/gemini-cli.nvim",
-		config = function()
-			require("gemini").setup()
-		end,
-	},
+	-- AI assistant - uncomment if needed
+	-- {
+	-- 	"jonroosevelt/gemini-cli.nvim",
+	-- 	config = function()
+	-- 		require("gemini").setup()
+	-- 	end,
+	-- },
 	"rafamadriz/friendly-snippets", -- Библиотека сниппетов
 	"nvim-lua/plenary.nvim",
-	"nvimtools/none-ls.nvim",
+	"nvimtools/none-ls.nvim", -- LSP sources for formatting and diagnostics
 	"stevearc/conform.nvim", -- Форматирование
 	-- Навигация по файлу в отдельном меню
 	{
 		"hedyhli/outline.nvim",
 		lazy = true,
 		cmd = { "Outline", "OutlineOpen" },
-		keys = { -- Example mapping to toggle outline
+		keys = {
 			{ "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
 		},
 		opts = {
-			-- Your setup opts here
+			keymaps = {
+				close = { "q", "<Esc>" },
+			},
 		},
 	},
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Цветовые схемы
@@ -137,7 +179,7 @@ require("lazy").setup({
 		end,
 		init = function()
 			if vim.fn.argc(-1) == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				local stat = vim.uv.fs_stat(vim.fn.argv(0))
 				if stat and stat.type == "directory" then
 					require("neo-tree")
 				end
@@ -145,7 +187,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "nvim-lualine/lualine.nvim" }, -- Нижняя информационная панель
-	"jumas-cola/cosco.nvim", -- Ставит ; и ,
+	-- "jumas-cola/cosco.nvim", -- Auto comma/semicolon (deprecated)
 	{ -- Поиск по проекту
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
@@ -220,6 +262,17 @@ require("lazy").setup({
 	{ "echasnovski/mini.clue", version = "*" }, -- Подсказки комбинаций клавиш
 	{ "echasnovski/mini.surround", version = "*" }, -- Оборачивание элементов символами
 	{ "echasnovski/mini.pairs", version = "*" }, -- Автозакрытие парных элементов
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {},
+		config = function(_, opts)
+			local npairs = require("nvim-autopairs")
+			npairs.setup(opts)
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
 	{ -- Преобразование регистра
 		"johmsalas/text-case.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
@@ -243,6 +296,7 @@ require("lazy").setup({
 	},
 	"mfussenegger/nvim-dap", -- DAP
 	"jay-babu/mason-nvim-dap.nvim",
+	"ThePrimeagen/harpoon", -- Быстрая навигация по файлам
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = {

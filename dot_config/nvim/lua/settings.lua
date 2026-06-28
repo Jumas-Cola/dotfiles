@@ -3,111 +3,76 @@ local o = vim.o
 local g = vim.g
 local cmd = vim.cmd
 
-cmd.filetype("off") -- required
-opt.compatible = false -- be iMproved, required
+cmd.filetype("off")
+opt.compatible = false
 
-o.incsearch = false
+o.incsearch = true
 vim.wo.signcolumn = "yes"
-opt.ttimeoutlen = 0
+opt.ttimeoutlen = 50
 opt.wildmenu = true
+opt.wildmode = { "longest:full", "full" }
 
 o.colorcolumn = "80"
-
 opt.hidden = true
 
--- Указывает, загружен ли Node.js провайдер
 g.loaded_node_provider = true
 
--- Настройки табов
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.smarttab = true
 opt.smartindent = true
-opt.expandtab = true -- Ставим табы пробелами
-opt.softtabstop = 4 -- 4 пробела в табе
+opt.expandtab = true
+opt.softtabstop = 4
 opt.backspace = "indent,eol,start"
 
--- Время автообновления
 opt.updatetime = 250
 
--- Оповещения по умолчанию
 vim.notify = require("notify")
 
--- Автоотступ
--- opt.autoindent = true
-
--- Терминал по умолчанию
 opt.shell = "fish"
-
--- Включаем 256 цветов в терминале
 opt.termguicolors = true
-
--- Кодировка терминала
 opt.encoding = "utf-8"
+opt.fileencodings = "utf-8,cp1251,latin1"
 
--- Включить поддержку мыши
 opt.mouse = "a"
 
--- No annoying sound on errors
 opt.errorbells = false
 opt.visualbell = false
-opt.tm = 500
 
--- Черточки на табах
-opt.showtabline = 1
-
--- Вырубаем .swp и ~ (резервные) файлы
+opt.showtabline = 2
 opt.backup = false
 opt.swapfile = false
-opt.encoding = "utf-8" -- Кодировка файлов по умолчанию
-opt.fileencodings = "utf8,cp1251"
 
--- Буфер обмена
-opt.clipboard = "unnamed"
+opt.clipboard = "unnamedplus"
 opt.ruler = true
 
--- Нумерация строк
 opt.number = true
 opt.relativenumber = true
+opt.cursorline = true
 
--- Запретить перенос строк
 opt.wrap = false
-
--- Don't redraw while executing macros (good performance config)
 opt.lazyredraw = true
+
+opt.splitright = true
+opt.splitbelow = true
 
 g.CommandTPreferredImplementation = "lua"
 
--- Folds
 o.foldcolumn = "1"
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldenable = true
 
--- Vsnip
 g.vsnip_snippet_dir = "~/.config/nvim/vsnip"
 
-vim.filetype.add({
-	pattern = {
-		[".*%.blade%.php"] = "blade",
-	},
-})
+vim.filetype.add({ pattern = { [".*%.blade%.php"] = "blade" } })
 
--- Настройка окон диагностики
 vim.diagnostic.config({
 	virtual_text = false,
-	float = { border = "single" },
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
-			[vim.diagnostic.severity.INFO] = " ",
-			[vim.diagnostic.severity.HINT] = "󰌵 ",
-		},
-		linehl = {},
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
-		},
-	},
+	float = { border = "rounded" },
+	signs = true,
+	update_in_insert = false,
+	severity_sort = true,
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.diagnostic.on_publish_diagnostics
